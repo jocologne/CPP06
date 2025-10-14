@@ -164,15 +164,71 @@ static void convertInt(const std::string& str) {
 }
 
 static void convertFloat(const std::string& str) {
-	return;
+	std::string withoutF = str.substr(0, str.length() -1);
+	float value = std::atof(withoutF.c_str());
+	//Char conversion
+	if (std::isnan(value) || std::isinf(value) || value < std::numeric_limits<char>::min() || value > std::numeric_limits<char>::max()) {
+		std::cout << "char: impossible" << std::endl;
+	} else if (value < 32 || value > 126) {
+		std::cout << "char: Non displayable" << std::endl;
+	} else {
+		std::cout << "char: '" << static_cast<char>(value) << "'" << std::endl;
+	}
+	//Int conversion
+	if (std::isnan(value) || std::isinf(value) || value < std::numeric_limits<int>::min() || value > std::numeric_limits<int>::max()) {
+		std::cout << "int: impossible" << std::endl;
+	} else {
+		std::cout << "int: " << static_cast<int>(value) << std::endl;
+	}
+	//Float conversion
+	std::cout << "float: " << value;
+	if (value == static_cast<int>(value) && value < 1e6 && value > -1e6) {
+		std::cout << ".0";
+	}
+	std::cout << "f" << std::endl;
+	//Double conversion
+	std::cout << "double: " << static_cast<double>(value);
+	if (value == static_cast<int>(value) && value < 1e6 && value > -1e6) {
+		std::cout << ".0";
+	}
+	std::cout << std::endl;
 }
 
 static void convertDouble(const std::string& str) {
-	return;
+	double value = std::atof(str.c_str());
+	//Char conversion
+	if (std::isnan(value) || std::isinf(value) || value < std::numeric_limits<char>::min() || std::numeric_limits<char>::max()) {
+		std::cout << "char: impossible" << std::endl;		
+	} else if (value < 32 || value > 126) {
+		std::cout << "char: Non displayable" << std::endl;
+	} else {
+		std::cout << "char: '" << static_cast<char>(value) << "'" << std::endl;
+	}
+	//Int conversion
+	if (std::isnan(value) || std::isinf(value) || value < std::numeric_limits<int>::min() || std::numeric_limits<int>::max()) {
+		std::cout << "int: impossible" << std::endl;
+	} else {
+		std::cout << "int: " << static_cast<int>(value) << std::endl;
+	}
+	//Float conversion
+	std::cout << "float: " << value;
+	if (value == static_cast<int>(value) && value < 1e6 && value > -1e6) {
+		std::cout << ".0";
+	}
+	std::cout << "f" << std::endl;
+	//Double conversion
+	std::cout << "double: " << value;
+	if (value == static_cast<int>(value) && value < 1e6 && value > -1e6) {
+		std::cout << ".0";
+	}
+	std::cout << std::endl;
 }
 
 static void errorInput(void) {
-	return;
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int: impossible" << std::endl;
+	std::cout << "float: impossible" << std::endl;
+	std::cout << "double: impossible" << std::endl;
 }
 
 void ScalarConverter::convert(const std::string& str) {
